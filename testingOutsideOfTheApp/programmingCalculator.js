@@ -60,21 +60,21 @@ class StandardCalculator extends BaseCalculator {
         this.allowedOperationActions['%'] = this.getModuloNumber.bind(this);
     }
 
-    divideOneByNumber(number) {
-        if (number === 0) {
+    divideOneByNumber() {
+        if (this.firstNumber === 0) {
             return "Can't divide by 0"
         }
-        const result = 1 / Number(number)
+        const result = 1 / Number(this.firstNumber)
         return result.toString()
     }
 
-    squareRoot(number) {
-        const result = Math.sqrt(number)
+    squareRoot() {
+        const result = Math.sqrt(this.firstNumber)
         return result.toString()
     }
 
-    toThePowerOfTwo(number) {
-        const result = Math.pow(number, 2)
+    toThePowerOfTwo() {
+        const result = this.firstNumber * this.firstNumber
         return result.toString()
     }
 
@@ -161,3 +161,9 @@ try {
 } catch (error) {
     console.error(error.message); // "Invalid input '89' for base 2"
 }
+
+module.exports = {
+    BaseCalculator,
+    StandardCalculator,
+    ProgrammingCalculator
+};
