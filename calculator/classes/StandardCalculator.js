@@ -1,8 +1,6 @@
-const {
-    BaseCalculator
-} = require('./BaseCalculator');
+import { BaseCalculator } from "./baseCalculator.js";
 
-class StandardCalculator extends BaseCalculator {
+export class StandardCalculator extends BaseCalculator {
     constructor(firstNumber, secondNumber, operator) {
         super(firstNumber, secondNumber, operator); // Call the constructor of the BaseCalculator
         this.allowedOperationActions['**'] = this.toThePowerOfTwo.bind(this);
@@ -37,7 +35,3 @@ class StandardCalculator extends BaseCalculator {
         return result.toString()
     }
 }
-
-module.exports = {
-    StandardCalculator,
-};

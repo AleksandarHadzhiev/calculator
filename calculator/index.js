@@ -1,3 +1,5 @@
+import { StandardCalculator } from "./classes/standardCalculator.js";
+
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
     console.log(myDiv)

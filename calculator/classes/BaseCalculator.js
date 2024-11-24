@@ -1,4 +1,4 @@
-class BaseCalculator {
+export class BaseCalculator {
     constructor(firstNumber, secondNumber, operator) {
         this.firstNumber = firstNumber
         this.secondNumber = secondNumber
@@ -50,7 +50,3 @@ class BaseCalculator {
         }
     }
 }
-
-module.exports = {
-    BaseCalculator
-};
