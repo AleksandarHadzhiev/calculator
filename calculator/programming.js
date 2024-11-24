@@ -1,8 +1,11 @@
+import { ProgrammingCalculator } from "./classes/programmingCalculator.js";
+
 let currentOutput = '0';
 let isBinaryCalculation = false
 let isHexCalculation = false
 let isDecCalculation = true
 let isOctCalculation = false
+
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
     if (myDiv.classList.contains('invisible')) {
@@ -15,6 +18,7 @@ function ToggleSidebar() {
 }
 
 function setBinaryCalculation() {
+
     isBinaryCalculation = true
     isHexCalculation = false
     isDecCalculation = false
@@ -155,23 +159,28 @@ function calculateResult() {
     let inputs = splitAtOperator(currentOutput)
 
     const convertedResults = document.getElementsByClassName("converted-result")
+    let programmingCalculator = new ProgrammingCalculator(inputs.beforeOperator, inputs.afterOperator, inputs.operator)
     if (isBinaryCalculation) {
-        currentOutput = calculateBinary(inputs)
+        programmingCalculator.setBase(2)
+        currentOutput = addZeroesToBin(programmingCalculator.performCalculation())
         document.getElementById('output').innerText = currentOutput;
     }
     else if (isHexCalculation) {
-        currentOutput = hexCalculation(inputs)
+        programmingCalculator.setBase(16)
+        currentOutput = programmingCalculator.performCalculation()
         document.getElementById('output').innerText = currentOutput;
     }
     else if (isDecCalculation) {
-        currentOutput = calculateDec(inputs)
+        programmingCalculator.setBase(10)
+        currentOutput = programmingCalculator.performCalculation()
         document.getElementById('output').innerText = currentOutput;
     }
     else if (isOctCalculation) {
-        currentOutput = octCalculation(inputs)
+        programmingCalculator.setBase(8)
+        currentOutput = programmingCalculator.performCalculation()
         document.getElementById('output').innerText = currentOutput;
     }
-    numbers = convertNumber()
+    let numbers = convertNumber()
     convertedResults[0].innerText = numbers["binary"]
     convertedResults[1].innerText = numbers["octal"]
     convertedResults[2].innerText = numbers["decimal"]
@@ -238,7 +247,7 @@ function addZeroesToBin(binary) {
 
 function splitAtOperator(input) {
     // Define the operators you want to split by
-    const operators = ['+', '-', '*', '/', '^', '%'];
+    const operators = ['+', '-', '*', '/', '^', '%', '>>', '<<', '^', '|', '&', '~'];
 
     // Find the first occurrence of any operator
     for (let i = 0; i < input.length; i++) {
@@ -289,175 +298,17 @@ function clearOutput() {
     convertedResults[3].innerText = currentOutput
 }
 
-function calculateDec(inputs) {
-    let input1 = inputs.beforeOperator
-    let input2 = inputs.afterOperator
-    let operator = inputs.operator
-    let expression = input1 + operator + input2
-    let result = "";
-    if (input2 === "0" || input2 === "0" && operator === "/") {
-        return "Can not divide by 0";
-    }
-    try {
-        result = eval(expression.replace('x', '*'));
-    }
-    catch {
-        result = "Error"
-    }
-    return result
-}
+// Add the functions to the global `window` object
+window.ToggleSidebar = ToggleSidebar;
+window.clearOutput = clearOutput;
+window.appendAnOperatorToOutput = appendAnOperatorToOutput;
+window.appendToOutput = appendToOutput;
+window.calculateResult = calculateResult;
+window.setHexCalculation = setHexCalculation;
+window.setDecCalculation = setDecCalculation;
+window.setOctCalculation = setOctCalculation;
+window.setBinaryCalculation = setBinaryCalculation;
 
-function calculateBinary(inputs) {
-    let input1 = inputs.beforeOperator
-    let input2 = inputs.afterOperator
-    // let operator = inputs.operator
-    // Convert binary inputs to decimal for calculation
-    let num1 = parseInt(input1, 2);
-    let num2 = parseInt(input2, 2);
-    let result;
-    inputs.beforeOperator = num1
-    inputs.afterOperator = num2
-    result = calculateDec(inputs)
-    // if (input2 === "0" || input2 === "0" && operator === "/") {
-    //     return "Can not divide by 0";
-    // }
-    // switch (operator) {
-    //     case '+':
-    //         result = num1 + num2;
-    //         break;
-    //     case '-':
-    //         result = num1 - num2;
-    //         break;
-    //     case '*':
-    //         result = num1 * num2;
-    //         break;
-    //     case '/':
-    //         if (num2 === 0) {
-    //             return "Error: Division by Zero";
-    //         }
-    //         result = num1 / num2;
-    //         break;
-    //     case '&':
-    //         result = num1 & num2; // Bitwise AND
-    //         break;
-    //     case '|':
-    //         result = num1 | num2; // Bitwise OR
-    //         break;
-    //     case '^':
-    //         result = num1 ^ num2; // Bitwise XOR
-    //         break;
-    //     case '<<':
-    //         result = num1 << num2; // Left shift
-    //         break;
-    //     case '>>':
-    //         result = num1 >> num2; // Right shift
-    //         break;
-    //     case '~':
-    //         result = ~num1; // Bitwise NOT (only on one number)
-    //         break;
-    //     default:
-    //         return "Error: Invalid Operator";
-    // }
-
-    // Convert the result back to binary
-    return addZeroesToBin(result.toString(2));
-}
-
-function hexCalculation(inputs) {
-    let hex1 = inputs.beforeOperator
-    let hex2 = inputs.afterOperator
-    // let operator = inputs.operator
-    const num1 = parseInt(hex1, 16);
-    const num2 = parseInt(hex2, 16);
-    inputs.beforeOperator = num1
-    inputs.afterOperator = num2
-    let result;
-    result = calculateDec(inputs)
-    return result.toString(16).toUpperCase();
-    // if (hex2 === "0" || hex1 === "0" && operator === "/") {
-    //     return "Can not divide by 0";
-    // }
-    // try {
-    //     // Convert hex inputs to decimal
-    //     const num1 = parseInt(hex1, 16);
-    //     const num2 = parseInt(hex2, 16);
-
-    //     let result;
-
-    //     // Perform the operation based on the operator
-    //     switch (operator) {
-    //         case '+':
-    //             result = num1 + num2;
-    //             break;
-    //         case '-':
-    //             result = num1 - num2;
-    //             break;
-    //         case '*':
-    //             result = num1 * num2;
-    //             break;
-    //         case '/':
-    //             if (num2 === 0) throw new Error("Division by zero");
-    //             result = Math.floor(num1 / num2); // Integer division
-    //             break;
-    //         default:
-    //             throw new Error("Invalid operator. Use +, -, *, or /.");
-    //     }
-
-    //     // Convert the result back to hexadecimal and return
-    //     return result.toString(16).toUpperCase();
-    // } catch (error) {
-    //     console.error("Hexadecimal Calculation Error:", error.message);
-    //     return "Error";
-    // }
-}
-
-function octCalculation(inputs) {
-    let oct1 = inputs.beforeOperator
-    let oct2 = inputs.afterOperator
-    // let operator = inputs.operator
-    const num1 = parseInt(oct1, 8);
-    const num2 = parseInt(oct2, 8);
-    inputs.beforeOperator = num1
-    inputs.afterOperator = num2
-    let result;
-    result = calculateDec(inputs)
-    return result.toString(8).toUpperCase();
-    // if (oct2 === "0" || oct1 === "0" && operator === "/") {
-    //     return "Can not divide by 0";
-    // }
-    // try {
-    //     // Convert hex inputs to decimal
-    //     const num1 = parseInt(oct1, 8);
-    //     const num2 = parseInt(oct2, 8);
-
-    //     let result;
-
-    //     // Perform the operation based on the operator
-    //     switch (operator) {
-    //         case '+':
-    //             result = num1 + num2;
-    //             break;
-    //         case '-':
-    //             result = num1 - num2;
-    //             break;
-    //         case '*':
-    //             result = num1 * num2;
-    //             break;
-    //         case '/':
-    //             if (num2 === 0) throw new Error("Division by zero");
-    //             result = Math.floor(num1 / num2); // Integer division
-    //             break;
-    //         default:
-    //             throw new Error("Invalid operator. Use +, -, *, or /.");
-    //     }
-
-    //     // Convert the result back to hexadecimal and return
-    //     return result.toString(8).toUpperCase();
-    // } catch (error) {
-    //     console.error("Hexadecimal Calculation Error:", error.message);
-    //     return "Error";
-    // }
-}
 
 //Boot up the programming calculator with Dec setup
 setDecCalculator()
