@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="programming.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="menu-button" onclick="ToggleSidebar()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <h1>Programming</h1>
+    </div>
+    <div class="sidebar invisible" id="myDiv">
+        <div class="menu-button" onclick="ToggleSidebar()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <h3>Calculator</h3><br>
+        <div class="links">
+            <a href="index.html">Standard</a>
+            <a href="programming.html">Scientific</a>
+            <a href="programming.html">Graphic</a>
+            <a href="programming.html">Programming</a>
+            <a href="dateTime.html">Date calculation</a>
+            <a href="programming.html">Currency</a>
+            <a href="programming.html">Volume</a>
+            <a href="programming.html">Length</a>
+            <a href="programming.html">Weight and mass</a>
+            <a href="programming.html">Tempreture</a>
+        </div>
+    </div>
+    <div class="calculator">
+        <div class="output" id="output">0</div>
+        <div>
+            <!-- Base conversion buttons -->
+            <div class="conversion" id="bin" onclick="setBinaryCalculation()">
+                <p>BIN</p>
+                <p class="converted-result">0</p>
+            </div>
+            <div class="conversion" id="oct" onclick="setOctCalculation()">
+                <p>OCT</p>
+                <p class="converted-result">0</p>
+            </div>
+            <div class="conversion" id="dec" onclick="setDecCalculation()">
+                <p>DEC</p>
+                <p class="converted-result">0</p>
+            </div>
+            <div class="conversion" id="hex" onclick="setHexCalculation()">
+                <p>HEX</p>
+                <p class="converted-result">0</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <!-- Buttons for letters -->
+            <button onclick="appendToOutput('A')">A</button>
+            <button onclick="appendToOutput('B')">B</button>
+            <button onclick="appendToOutput('C')">C</button>
+            <button onclick="appendToOutput('D')">D</button>
+            <button onclick="appendToOutput('E')">E</button>
+            <button onclick="appendToOutput('F')">F</button>
+
+            <!-- Buttons for numbers -->
+            <button onclick="appendToOutput('1')">1</button>
+            <button onclick="appendToOutput('2')">2</button>
+            <button onclick="appendToOutput('3')">3</button>
+            <button onclick="appendToOutput('4')">4</button>
+            <button onclick="appendToOutput('5')">5</button>
+            <button onclick="appendToOutput('6')">6</button>
+            <button onclick="appendToOutput('7')">7</button>
+            <button onclick="appendToOutput('8')">8</button>
+            <button onclick="appendToOutput('9')">9</button>
+            <button onclick="appendToOutput('0')">0</button>
+
+            <!-- Operators -->
+            <button onclick="appendAnOperatorToOutput('+')">+</button>
+            <button onclick="appendAnOperatorToOutput('-')">-</button>
+            <button onclick="appendAnOperatorToOutput('*')">*</button>
+            <button onclick="appendAnOperatorToOutput('/')">/</button>
+
+            <!-- Bitwise Operators -->
+            <button onclick="appendAnOperatorToOutput('&')">AND</button>
+            <button onclick="appendAnOperatorToOutput('|')">OR</button>
+            <button onclick="appendAnOperatorToOutput('^')">XOR</button>
+            <button onclick="appendAnOperatorToOutput('<<')">
+                <<< /button>
+                    <button onclick="appendAnOperatorToOutput('>>')">>>></button>
+
+
+                    <!-- Clear button -->
+                    <button onclick="clearOutput()">CE</button>
+
+                    <!-- Equals button -->
+                    <button onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script src='programming.js'></script>
+</body>
+
+</html>

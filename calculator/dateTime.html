@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="date.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="menu-button" onclick="ToggleSidebar()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <h1>Date Calculator</h1>
+    </div>
+    <div class="sidebar invisible" id="myDiv">
+        <div class="menu-button" onclick="ToggleSidebar()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <h3>Calculator</h3><br>
+        <div class="links">
+            <a href="index.html">Standard</a>
+            <a href="programming.html">Scientific</a>
+            <a href="programming.html">Graphic</a>
+            <a href="programming.html">Programming</a>
+            <a href="dateTime.html">Date calculation</a>
+            <a href="programming.html">Currency</a>
+            <a href="programming.html">Volume</a>
+            <a href="programming.html">Length</a>
+            <a href="programming.html">Weight and mass</a>
+            <a href="programming.html">Tempreture</a>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Drop-down menu for choosing the action -->
+        <div class="input-group">
+            <label for="operation-select">Choose an operation:</label>
+            <select id="operation-select" onchange="changeOperation()">
+                <option value="compare">Compare Dates</option>
+                <option value="addSubtract">Add/Subtract Days</option>
+            </select>
+        </div>
+        <form id="date-form">
+            <div class="input-group">
+                <label for="start-date">From:</label>
+                <input type="datetime-local" id="start-date" onchange="toggleButtons()" required>
+            </div>
+            <!-- Additional input for adding/subtracting days -->
+            <div class="input-group" id="add-subtract-group" style="display: none;">
+                <label for="years">Years:</label>
+                <input class="calculator-button" disabled type="number" id="years" placeholder="Enter years" min="0"
+                    onchange="calculateNewDate()">
+
+                <label for="months">Months:</label>
+                <input class="calculator-button" disabled type="number" id="months" placeholder="Enter months" min="0"
+                    onchange="calculateNewDate()">
+
+                <label for="days">Days:</label>
+                <input class="calculator-button" disabled type="number" id="days" placeholder="Enter days" min="0"
+                    onchange="calculateNewDate()">
+
+                <label for="operation">Operation:</label>
+                <select id="operation" onchange="calculateNewDate()">
+                    <option value="add">Add</option>
+                    <option value="subtract">Subtract</option>
+                </select>
+                <label>Date:</label>
+                <p id="result-date">--</p>
+            </div>
+            <div class="input-group" id="end-date-group">
+                <label for="end-date">To:</label>
+                <input onchange="calculateDifferences()" type="datetime-local" id="end-date" required>
+                <div id="result">
+                    <p>Differences</p>
+                    <span id="diff">--</span>
+                    <br>
+                    <span id="total-days">--</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src='date.js'></script>
+</body>
+
+</html>
