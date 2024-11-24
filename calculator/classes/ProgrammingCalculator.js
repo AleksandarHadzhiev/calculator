@@ -1,0 +1,65 @@
+const {
+    BaseCalculator
+} = require('./BaseCalculator');
+
+class ProgrammingCalculator extends BaseCalculator {
+    constructor(firstNumber, secondNumber, operator, base = 2) {
+        super(firstNumber, secondNumber, operator)
+        this.allowedOperationActions['%'] = this.getModuloNumber.bind(this);
+        this.base = base
+    }
+
+    reset(firstNumber, secondNumber, operator, base = 2) {
+        super.reset(firstNumber, secondNumber, operator);
+        this.base = base
+    }
+
+    getModuloNumber() {
+        if (this.secondNumber === 0) {
+            return "Can't modulo by 0"
+        }
+        const result = this.firstNumber % this.secondNumber;
+        return result
+    }
+
+    // Validate the input for the given base
+    validateInputForBase(number, base) {
+        const baseRegex = {
+            2: /^[01]+$/,            // Binary: Only 0 or 1
+            8: /^[0-7]+$/,           // Octal: Only 0-7
+            10: /^[0-9]+$/,          // Decimal: Only 0-9
+            16: /^[0-9A-Fa-f]+$/,    // Hexadecimal: Only 0-9 and A-F
+        };
+
+        if (!baseRegex[base].test(number)) {
+            throw new Error(`Invalid input "${number}" for base ${base}`);
+        }
+    }
+
+    // Convert input to the specified base
+    convertToBase10(number, base) {
+        return parseInt(number, base); // Convert string to base 10 integer
+    }
+
+    performCalculation() {
+        // Validate and convert inputs based on the base
+        this.validateInputForBase(this.firstNumber, this.base);
+        this.validateInputForBase(this.secondNumber, this.base);
+
+        // Convert inputs to base 10 for calculations
+        const firstNumberBase10 = this.convertToBase10(this.firstNumber, this.base);
+        const secondNumberBase10 = this.convertToBase10(this.secondNumber, this.base);
+
+        // Temporarily overwrite the base class numbers for calculation
+        this.firstNumber = firstNumberBase10;
+        this.secondNumber = secondNumberBase10;
+
+        // Perform the calculation using the base class logic
+        const result = super.performCalculation();
+        return result.toString(this.base)
+    }
+}
+
+module.exports = {
+    ProgrammingCalculator
+};
