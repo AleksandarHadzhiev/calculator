@@ -6,7 +6,21 @@ export class Converter {
         this.allowedConversionRates = {}
     }
 
-    converValue() {
+    convert() {
+        this.convertedValue = this.baseBalue * this.conversionRate
+    }
+
+    setNewBaseBalue(newBaseValue) {
+        this.baseBalue = newBaseValue
+        this.convertValue()
+    }
+
+    setNewConversionRate(newConversionRate) {
+        this.conversionRate = newConversionRate
+        this.convertValue()
+    }
+
+    convertValue() {
         const action = this.allowedConversionRates[this.conversionRate];
         if (action) {
             return action();
