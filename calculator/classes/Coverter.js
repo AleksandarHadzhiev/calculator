@@ -6,12 +6,14 @@ export class Converter {
         this.allowedConversionRates = {}
     }
 
-    convert() {
-        this.convertedValue = this.baseBalue * this.conversionRate
+    getConvertedValue() {
+        console.log(this.convertedValue)
+        return this.convertedValue
     }
 
     setNewBaseBalue(newBaseValue) {
         this.baseBalue = newBaseValue
+        console.log(this.baseBalue)
         this.convertValue()
     }
 
