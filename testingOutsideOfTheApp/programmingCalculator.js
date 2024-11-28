@@ -162,7 +162,7 @@ try {
     console.error(error.message); // "Invalid input '89' for base 2"
 }
 
-module.exports = {
+export default {
     BaseCalculator,
     StandardCalculator,
     ProgrammingCalculator
