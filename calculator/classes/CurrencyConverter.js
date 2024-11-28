@@ -11,7 +11,7 @@ export class CurrencyConverter {
         return this.convertedValue
     }
 
-    setNewBaseBalue(newBaseValue) {
+    setNewBaseValue(newBaseValue) {
         this.baseBalue = newBaseValue
         this.convertValue()
     }

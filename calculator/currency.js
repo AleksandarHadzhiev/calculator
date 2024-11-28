@@ -35,10 +35,15 @@ function updateConversionRate() {
 }
 
 function Back() {
-    currentOutput = currentOutput.slice(0, -1);
-    convertRates()
-
+    if (currentOutput.length > 1) {
+        currentOutput = currentOutput.slice(0, -1);
+        convertRates()
+    }
+    else {
+        currentOutput = ""
+    }
 }
+
 function clearOutput() {
     currentOutput = '0';
     document.getElementById('base-value').innerText = currentOutput;
@@ -52,7 +57,7 @@ function appendToOutput(value) {
 }
 
 function convertRates() {
-    currencyConverter.setNewBaseBalue(currentOutput)
+    currencyConverter.setNewBaseValue(currentOutput)
     document.getElementById('base-value').innerText = currentOutput;
     const convertedValue = currencyConverter.getConvertedValue()
     document.getElementById('converted-value').innerText = convertedValue;
