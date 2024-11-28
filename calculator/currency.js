@@ -1,10 +1,19 @@
 import { CurrencyConverter } from './classes/CurrencyConverter.js'
-import { GetCurrentCurrencyRates } from './classes/currencyAPICall.js';
+import { GetCurrentCurrencyRatesFromAPI } from './classes/currencyAPICall.js';
+import { GetCurrentCurrencyRatesFromJSON } from './classes/currenciesJSONfile.js';
 let currentOutput = ""
 const currencyConverter = new CurrencyConverter(0, 'EUR-USD')
-const getCurrencyRates = new GetCurrentCurrencyRates()
+const json = new GetCurrentCurrencyRatesFromJSON()
+const getCurrencyRates = new GetCurrentCurrencyRatesFromAPI()
 getCurrencyRates.fetchCurrencyRates()
-currencyConverter.conversionRates = getCurrencyRates.getRates()
+json.loadRatesFromFile()
+if (getCurrencyRates.getRates() != null) {
+    currencyConverter.conversionRates = getCurrencyRates.getRates()
+}
+else {
+    currencyConverter.conversionRates = json.getRates()
+
+}
 
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');

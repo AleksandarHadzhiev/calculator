@@ -1,25 +1,17 @@
-export class GetCurrentCurrencyRates {
+export class GetCurrentCurrencyRatesFromAPI {
     constructor() {
-        this.conversionRates = {}
+        this.conversionRates = null
         this.apiKey = "62f42b2c414b0673a3024d37"
+        this.currencies = ["USD", "EUR", "BGN", "JPY", "AUD", "CAD", "GBP", "EGP", "CNY", "CHF"]
     }
 
     async fetchCurrencyRates() {
-        const USDBase = "USD"
-        const EURBase = "EUR"
-        const BGNBase = "BGN"
-        const YENBase = "JPY"
-        const USDRates = await this.fetchFromAPI(this.apiKey, USDBase);
-        const EURRates = await this.fetchFromAPI(this.apiKey, EURBase);
-        const BGNRates = await this.fetchFromAPI(this.apiKey, BGNBase);
-        const YENRates = await this.fetchFromAPI(this.apiKey, YENBase);
-
-        if (USDRates) {
-            this.fetchNeededRATES(USDRates, USDBase)
-            this.fetchNeededRATES(EURRates, EURBase)
-            this.fetchNeededRATES(BGNRates, BGNBase)
-            this.fetchNeededRATES(YENRates, YENBase)
-        }
+        this.currencies.forEach(async currency => {
+            const rates = await this.fetchFromAPI(this.apiKey, currency);
+            if (rates) {
+                this.fetchNeededRATES(rates, currency)
+            }
+        });
     };
 
     async fetchFromAPI(apiKey, base) {
@@ -40,11 +32,10 @@ export class GetCurrentCurrencyRates {
     }
 
     fetchNeededRATES(rates, base) {
-        const desiredRates = ['BGN', 'EUR', 'USD', 'JPY']
 
-        desiredRates.forEach(rate => {
-            const key = `${base}-${rate}`
-            this.conversionRates[key] = rates.conversion_rates[rate]
+        this.currencies.forEach(currency => {
+            const key = `${base}-${currency}`
+            this.conversionRates[key] = rates.conversion_rates[currency]
         });
 
     }
