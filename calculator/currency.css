@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.currencies {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    text-align: right;
+}
+
+/* Navigation bar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+}
+
+/* Menu button styling */
+.menu-button {
+    width: 40px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+/* Lines for the hamburger icon */
+.menu-button .line {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+h1 {
+    margin-left: 15px;
+}
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    /* Full height */
+    background-color: #2c3e50;
+    /* Dark background color */
+    color: #ecf0f1;
+    /* Light text color */
+    border-right: 2px solid #34495e;
+    /* Right border for separation */
+    padding: 20px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow effect */
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+/* Text styling for the sidebar */
+.sidebar h3 {
+    font-size: 1.8em;
+    margin-top: 25px;
+    margin-bottom: 2px;
+    border-top: solid 2px white;
+    color: #ecdbff;
+    /* Lighter color for the header */
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    /* Ensures equal space between elements */
+    height: 100vh;
+    /* Full height of the viewport */
+    padding: 20px;
+}
+
+.sidebar a {
+    font-size: 1.2em;
+    border: solid 2px white;
+    margin-top: 10px;
+    /* Reset margin to maintain even spacing */
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    /* Remove underline */
+    color: white;
+    /* Text color */
+}
+
+.sidebar a:hover {
+    background-color: #34495e;
+    /* Slightly darker color on hover */
+}
+
+/* Initially hidden */
+.invisible {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+    /* 0.5s delay for visibility */
+}
+
+/* Visible state with fade-in */
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0s linear 0s;
+}
+
+/* Calculator specific */
+
+#calc {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content {
+    background: #2c302c;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+#content form input {
+    border: 0;
+    outline: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#backspace {
+    background-color: rgb(237, 89, 30);
+    color: white;
+}
+
+#res {
+    padding: 10px;
+}
+
+#clear {
+    background-color: rgb(237, 89, 30);
+    color: white;
+}
+
+form #output {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px 0;
+}
+
+form #output input {
+    text-align: right;
+    flex: 1;
+    font-size: 25px;
+}
