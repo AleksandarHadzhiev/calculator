@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+.output {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    text-align: right;
+}
+
 /* Navigation bar styling */
 .navbar {
     position: fixed;

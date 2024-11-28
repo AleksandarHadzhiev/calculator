@@ -1,9 +1,9 @@
 import { BaseCalculator } from "./baseCalculator.js";
 
 export class StandardCalculator extends BaseCalculator {
-    constructor(firstNumber, secondNumber, operator) {
+    constructor(firstNumber, secondNumber = 0, operator) {
         super(firstNumber, secondNumber, operator); // Call the constructor of the BaseCalculator
-        this.allowedOperationActions['**'] = this.toThePowerOfTwo.bind(this);
+        this.allowedOperationActions['²'] = this.toThePowerOfTwo.bind(this);
         this.allowedOperationActions['√'] = this.squareRoot.bind(this);
         this.allowedOperationActions['#'] = this.divideOneByNumber.bind(this);
         this.allowedOperationActions['%'] = this.getModuloNumber.bind(this);

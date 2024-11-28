@@ -1,8 +1,16 @@
 import { StandardCalculator } from "./classes/standardCalculator.js";
 
+let currentOutput = '0';
+window.ToggleSidebar = ToggleSidebar;
+window.clearOutput = clearOutput;
+window.appendAnOperatorToOutput = appendAnOperatorToOutput;
+window.appendToOutput = appendToOutput;
+window.Result = Result;
+window.Clear = Clear;
+window.Back = Back;
+
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
-    console.log(myDiv)
     if (myDiv.classList.contains('invisible')) {
         myDiv.classList.remove('invisible');
         myDiv.classList.add('visible');
@@ -12,68 +20,87 @@ function ToggleSidebar() {
     }
 }
 
-function Solve(val) {
-    var v = document.getElementById('res');
-    if (val.includes('²')) {
-        v.value = v.value * v.value
+
+function splitAtOperator(input) {
+    // Define the operators you want to split by
+    const operators = ['+', '-', '*', '/', '^', '%', '>>', '<<', '^', '|', '&', '~', '²', '#', '√'];
+
+    // Find the first occurrence of any operator
+    for (let i = 0; i < input.length; i++) {
+        if (operators.includes(input[i])) {
+            // Split the string into three parts: before, operator, after
+            const beforeOperator = input.slice(0, i);
+            const operator = input[i];
+            const afterOperator = input.slice(i + 1);
+
+            return {
+                beforeOperator,
+                operator,
+                afterOperator
+            };
+        }
     }
-    else if (val.includes('#')) {
-        CalculateOneDividedByX(v)
+
+    // If no operator is found, return null or handle as desired
+    return null;
+}
+
+function appendToOutput(value) {
+    if (currentOutput == '0') {
+        currentOutput = value;
+    } else {
+        currentOutput += value;
     }
-    else if (val.includes('√')) {
-        CalculateSquareRoot(v, val)
+    document.getElementById('output').innerText = currentOutput;
+}
+
+function appendAnOperatorToOutput(value) {
+    let inputs = splitAtOperator(currentOutput)
+    const inSpecialOperators = checkIfInSpecialOperators(value)
+    if (inputs !== null && inputs.afterOperator !== '') {
+        Result()
     }
-    else if (Number(v.value) == 0 && Number(val) == 0) {
-        v.value = "0"
+    else if (inSpecialOperators) {
+        calculateSpecialResult(value)
     }
     else {
-        v.value += val;
+        currentOutput += value
+        document.getElementById('output').innerText = currentOutput;
     }
 }
 
-function CalculateOneDividedByX(v) {
-    if (v.value === '') {
-        v.value = "Cannot divide by zero"
-    }
-    else if (v.value.length >= 1) {
-        v.value = 1 / Number(v.value)
-    }
-    else if (v.value == "0") {
-        v.value = "Cannot divide by zero"
-    }
+function calculateSpecialResult(operator) {
+    let standardCalculator = new StandardCalculator(Number(currentOutput), 0, operator)
+    currentOutput = standardCalculator.performCalculation()
+    document.getElementById('output').innerText = currentOutput;
 }
 
-function CalculateSquareRoot(v, val) {
-    v.value += val;
-    if (v.value === '√') {
-        v.value = Math.sqrt(0)
+function checkIfInSpecialOperators(operator) {
+    const specialoperators = ['²', '#', '√']
+    if (specialoperators.includes(operator)) {
+        return true
     }
-    else if (v.value.includes('√') && v.value.length > 1) {
-        number = v.value.replace('√', '')
-        v.value = Math.sqrt(number)
-    }
-    else if (v.value.includes('√') && val !== '√') {
-        v.value = Math.sqrt(val)
-    }
+    return false
+}
+
+function clearOutput() {
+    currentOutput = '0';
+    document.getElementById('output').innerText = currentOutput;
 }
 
 function Result() {
-    console.log(document.getElementById('res').value)
-    var num1 = document.getElementById('res').value;
-    try {
-        var num2 = eval(num1.replace('x', '*'));
-        document.getElementById('res').value = num2;
-    } catch {
-        document.getElementById('res').value = 'Error';
-    }
+    let inputs = splitAtOperator(currentOutput)
+    let standardCalculator = new StandardCalculator(Number(inputs.beforeOperator), Number(inputs.afterOperator), inputs.operator)
+    currentOutput = standardCalculator.performCalculation()
+    document.getElementById('output').innerText = currentOutput;
 }
 
 function Clear() {
-    var inp = document.getElementById('res');
+    var inp = document.getElementById('output');
     inp.value = '';
 }
 function Back() {
-    var ev = document.getElementById('res');
+    var ev = document.getElementById('output');
     ev.value = ev.value.slice(0, -1);
 }
 document.addEventListener('keydown', function (event) {
