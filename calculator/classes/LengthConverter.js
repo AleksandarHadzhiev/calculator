@@ -1,8 +1,8 @@
 import { GetLengthsRatesFromJSON } from "./lengthsJSONfile.js"
 
 export class LengthConverter {
-    constructor(baseBalue, conversionRate) {
-        this.baseValue = baseBalue
+    constructor(baseValue, conversionRate) {
+        this.baseValue = baseValue
         this.convertedValue = 0
         this.conversionRate = conversionRate
         this.conversionRates = {}
@@ -13,7 +13,7 @@ export class LengthConverter {
     }
 
     setNewBaseValue(newBaseValue) {
-        this.baseBalue = newBaseValue
+        this.baseValue = newBaseValue
         this.convertValue()
     }
 
@@ -29,7 +29,7 @@ export class LengthConverter {
     }
 
     convertValue() {
-        const operation = this.baseBalue.toString() + this.conversionRates[this.conversionRate]
+        const operation = this.baseValue.toString() + this.conversionRates[this.conversionRate]
         this.convertedValue = eval(operation)
         this.convertedValue = Math.round(this.convertedValue * 100) / 100
     }
