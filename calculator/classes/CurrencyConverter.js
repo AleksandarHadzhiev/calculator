@@ -1,7 +1,7 @@
 export class CurrencyConverter {
 
-    constructor(baseBalue, conversionRate) {
-        this.baseValue = baseBalue
+    constructor(baseValue, conversionRate) {
+        this.baseValue = baseValue
         this.convertedValue = 0
         this.conversionRate = conversionRate
         this.conversionRates = {}
@@ -12,7 +12,7 @@ export class CurrencyConverter {
     }
 
     setNewBaseValue(newBaseValue) {
-        this.baseBalue = newBaseValue
+        this.baseValue = newBaseValue
         this.convertValue()
     }
 
@@ -26,7 +26,7 @@ export class CurrencyConverter {
     }
 
     convertValue() {
-        this.convertedValue = this.baseBalue * this.conversionRates[this.conversionRate];
+        this.convertedValue = this.baseValue * this.conversionRates[this.conversionRate];
         this.convertedValue = Math.round(this.convertedValue * 100) / 100
     }
 

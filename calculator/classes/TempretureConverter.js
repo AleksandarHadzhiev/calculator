@@ -1,6 +1,6 @@
-import { GetLengthsRatesFromJSON } from "./lengthsJSONfile.js"
+import { GetTempretureRatesFromJSON } from "./tempretureJSONfile.js"
 
-export class LengthConverter {
+export class TempretureConverter {
     constructor(baseValue, conversionRate) {
         this.baseValue = baseValue
         this.convertedValue = 0
@@ -23,14 +23,14 @@ export class LengthConverter {
     }
 
     loadRates() {
-        const getLengthsFromJSON = new GetLengthsRatesFromJSON()
-        getLengthsFromJSON.loadRatesFromFile()
-        this.conversionRates = getLengthsFromJSON.getRates()
+        const getTempFromJSON = new GetTempretureRatesFromJSON()
+        getTempFromJSON.loadRatesFromFile()
+        this.conversionRates = getTempFromJSON.getRates()
     }
 
     convertValue() {
-        const operation = this.baseValue.toString() + this.conversionRates[this.conversionRate]
+        const operation = `(${this.baseValue} ${this.conversionRates[this.conversionRate]}`
         this.convertedValue = eval(operation)
-        this.convertedValue = Math.round(this.convertedValue * 100) / 100
     }
+
 }
