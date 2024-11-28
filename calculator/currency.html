@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Standard</h1>
+        <h1>Currency</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -40,35 +40,23 @@
             <form>
                 <div class="output" id="output">0</div>
                 <div class="btn">
-                    <input type="button" value='%' onclick="appendAnOperatorToOutput('%')">
-                    <input type="button" value='CE' onclick="Clear()" id="clear">
                     <input type="button" value='C' onclick="clearOutput()" id="clear">
                     <input type="button" value='←' onclick="Back()" id="backspace">
-                    <br>
-                    <input type="button" value='1/x' onclick="appendAnOperatorToOutput('#')">
-                    <input type="button" value='x²' onclick="appendAnOperatorToOutput('²')">
-                    <input type="button" value='&radic;x' onclick="appendAnOperatorToOutput('√')">
-                    <input type="button" value='/' onclick="appendAnOperatorToOutput('/')">
                     <br>
                     <input type="button" value='7' onclick="appendToOutput('7')">
                     <input type="button" value='8' onclick="appendToOutput('8')">
                     <input type="button" value='9' onclick="appendToOutput('9')">
-                    <input type="button" value='x' onclick="appendAnOperatorToOutput('*')">
                     <br>
                     <input type="button" value='4' onclick="appendToOutput('4')">
                     <input type="button" value='5' onclick="appendToOutput('5')">
                     <input type="button" value='6' onclick="appendToOutput('6')">
-                    <input type="button" value='-' onclick="appendAnOperatorToOutput('-')">
                     <br>
                     <input type="button" value='1' onclick="appendToOutput('1')">
                     <input type="button" value='2' onclick="appendToOutput('2')">
                     <input type="button" value='3' onclick="appendToOutput('3')">
-                    <input type="button" value='+' onclick="appendAnOperatorToOutput('+')">
                     <br>
-                    <input type="button" value='00' onclick="appendToOutput('00')">
                     <input type="button" value='0' onclick="appendToOutput('0')">
                     <input type="button" value='.' onclick="appendAnOperatorToOutput('.')">
-                    <input type="button" value='=' onclick="Result()">
                 </div>
             </form>
         </div>
