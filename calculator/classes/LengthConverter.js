@@ -1,5 +1,6 @@
-export class CurrencyConverter {
+import { GetLengthsRatesFromJSON } from "./lengthsJSONfile.js"
 
+export class LengthConverter {
     constructor(baseBalue, conversionRate) {
         this.baseValue = baseBalue
         this.convertedValue = 0
@@ -21,13 +22,15 @@ export class CurrencyConverter {
         this.convertValue()
     }
 
-    setConversionRates(newConversionrates) {
-        this.conversionRates = newConversionrates
+    loadRates() {
+        const getLengthsFromJSON = new GetLengthsRatesFromJSON()
+        getLengthsFromJSON.loadRatesFromFile()
+        this.conversionRates = getLengthsFromJSON.getRates()
     }
 
     convertValue() {
-        this.convertedValue = this.baseBalue * this.conversionRates[this.conversionRate];
+        const operation = this.baseBalue.toString() + this.conversionRates[this.conversionRate]
+        this.convertedValue = eval(operation)
         this.convertedValue = Math.round(this.convertedValue * 100) / 100
     }
-
 }

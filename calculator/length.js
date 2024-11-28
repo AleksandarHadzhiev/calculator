@@ -1,20 +1,7 @@
-import { CurrencyConverter } from './classes/CurrencyConverter.js'
-import { GetCurrentCurrencyRatesFromAPI } from './classes/currencyAPICall.js';
-import { GetCurrentCurrencyRatesFromJSON } from './classes/currenciesJSONfile.js';
+import { LengthConverter } from "./classes/LengthConverter.js"
 let currentOutput = ""
-const currencyConverter = new CurrencyConverter(0, 'EUR-USD')
-const json = new GetCurrentCurrencyRatesFromJSON()
-const getCurrencyRates = new GetCurrentCurrencyRatesFromAPI()
-getCurrencyRates.fetchCurrencyRates()
-json.loadRatesFromFile()
-if (getCurrencyRates.getRates() != null) {
-    currencyConverter.conversionRates = getCurrencyRates.getRates()
-}
-else {
-    currencyConverter.conversionRates = json.getRates()
-
-}
-
+const lengthCoverter = new LengthConverter(0, 'CM-INCH')
+lengthCoverter.loadRates()
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
     if (myDiv.classList.contains('invisible')) {
@@ -30,7 +17,7 @@ function updateConversionRate() {
     const baseRate = document.getElementById('base-rate').value;
     const conversionRate = document.getElementById('conversion-rate').value;
     const rate = baseRate + "-" + conversionRate
-    currencyConverter.setNewConversionRate(rate)
+    lengthCoverter.setNewConversionRate(rate)
     convertRates()
 }
 
@@ -57,9 +44,9 @@ function appendToOutput(value) {
 }
 
 function convertRates() {
-    currencyConverter.setNewBaseValue(currentOutput)
+    lengthCoverter.setNewBaseValue(currentOutput)
     document.getElementById('base-value').innerText = currentOutput;
-    const convertedValue = currencyConverter.getConvertedValue()
+    const convertedValue = lengthCoverter.getConvertedValue()
     document.getElementById('converted-value').innerText = convertedValue;
 }
 // Add the functions to the global `window` object
