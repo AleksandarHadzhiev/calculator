@@ -1,7 +1,10 @@
 import { CurrencyConverter } from './classes/CurrencyConverter.js'
-
+import { GetCurrentCurrencyRates } from './classes/currencyAPICall.js';
 let currentOutput = ""
-const currencyConverter = new CurrencyConverter(0, 'euro-usd')
+const currencyConverter = new CurrencyConverter(0, 'EUR-USD')
+const getCurrencyRates = new GetCurrentCurrencyRates()
+getCurrencyRates.fetchCurrencyRates()
+currencyConverter.conversionRates = getCurrencyRates.getRates()
 
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
@@ -18,7 +21,6 @@ function updateConversionRate() {
     const baseRate = document.getElementById('base-rate').value;
     const conversionRate = document.getElementById('conversion-rate').value;
     const rate = baseRate + "-" + conversionRate
-    console.log(rate)
     currencyConverter.setNewConversionRate(rate)
     convertRates()
 }
@@ -44,7 +46,6 @@ function convertRates() {
     currencyConverter.setNewBaseBalue(currentOutput)
     document.getElementById('base-value').innerText = currentOutput;
     const convertedValue = currencyConverter.getConvertedValue()
-    console.log(convertedValue)
     document.getElementById('converted-value').innerText = convertedValue;
 }
 // Add the functions to the global `window` object
