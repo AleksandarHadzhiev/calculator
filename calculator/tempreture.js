@@ -53,7 +53,6 @@ function appendToOutput(value) {
 }
 
 function convertRates() {
-    console.log(currentOutput)
     if (currentOutput === "") {
         currentOutput = "0"
     }

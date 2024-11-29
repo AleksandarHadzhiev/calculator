@@ -5,7 +5,6 @@ const lengths = ["ATM", "BAR", "KP", "PPSI", "PAS", "MMM"];
 const jsonFileName = "./jsonObjects/pressure.json"
 const ratesFromJSONFile = await loadRatesFromFile(lengths, jsonFileName)
 const rate = LoadConversionRate()
-console.log(rate)
 const angleConverter = new RateConverter(0, rate)
 angleConverter.setConverionRates(ratesFromJSONFile)
 function ToggleSidebar() {
@@ -54,7 +53,6 @@ function appendToOutput(value) {
 }
 
 function convertRates() {
-    console.log(currentOutput)
     if (currentOutput === "") {
         currentOutput = "0"
     }
