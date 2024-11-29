@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Length</h1>
+        <h1>Area</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -45,25 +45,17 @@
                 <div class="currencies">
                     <div class="base">
                         <select id="base-rate" onchange="updateConversionRate()">
-                            <option value="CM">CM</option>
-                            <option value="INCH">INCH</option>
-                            <option value="METER">METER</option>
-                            <option value="FOOT">FOOT</option>
-                            <option value="YARD">YARD</option>
-                            <option value="MILE">MILE</option>
-                            <option value="KM">KM</option>
+                            <option value="EV">Electron volts</option>
+                            <option value="JOULES">Joules</option>
+                            <option value="KJOULES">kilojoules</option>
                         </select>
                         <p id="base-value" aria-placeholder="0">0</p>
                     </div>
                     <div class="converted">
                         <select id="conversion-rate" onchange="updateConversionRate()">
-                            <option value="INCH">INCH</option>
-                            <option value="CM">CM</option>
-                            <option value="METER">METER</option>
-                            <option value="FOOT">FOOT</option>
-                            <option value="YARD">YARD</option>
-                            <option value="MILE">MILE</option>
-                            <option value="KM">KM</option>
+                            <option value="JOULES">Joules</option>
+                            <option value="EV">Electron volts</option>
+                            <option value="KJOULES">kilojoules</option>
                         </select>
                         <p id="converted-value" aria-placeholder="0">0</p>
                     </div>
@@ -90,7 +82,7 @@
             </form>
         </div>
     </div>
-    <script type="module" src='./length.js'></script>
+    <script type="module" src='./energy.js'></script>
 </body>
 
 </html>

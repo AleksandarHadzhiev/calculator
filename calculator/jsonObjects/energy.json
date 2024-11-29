@@ -1,0 +1,11 @@
+{
+    "EV_JOULES": "* 1.602177e-19)",
+    "EV_KJOULES": "* 1.602177e-22)",
+    "JOULES_EV": "* 6.241509e+18)",
+    "JOULES_KJOULES": "* 0.001)",
+    "KJOULES_EV": "* 6.241509e+21)",
+    "KJOULES_JOULES": "* 1000)",
+    "KJOULES_KJOULES": "* 1)",
+    "EV_EV": "* 1)",
+    "JOULES_JOULES": "* 1)"
+}
