@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="currency.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="menu-button" onclick="ToggleSidebar()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <h1>Power</h1>
+    </div>
+    <div class="sidebar invisible" id="myDiv">
+        <div class="menu-button" onclick="ToggleSidebar()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <h3>Calculator</h3><br>
+        <div class="links">
+            <a href="index.html">Standard</a>
+            <a href="data.html">Data</a>
+            <a href="power.html">Power</a>
+            <a href="programming.html">Programming</a>
+            <a href="dateTime.html">Date calculation</a>
+            <a href="currency.html">Currency</a>
+            <a href="angle.html">Angle</a>
+            <a href="length.html">Length</a>
+            <a href="pressure.html">Pressure</a>
+            <a href="tempreture.html">Tempreture</a>
+        </div>
+    </div>
+    <div id="calc">
+        <div id="content">
+            <form>
+                <div class="currencies">
+                    <div class="base">
+                        <select id="base-rate" onchange="updateConversionRate()">
+                            <option value="BPM">BPM</option>
+                            <option value="FPPR">FPPR</option>
+                            <option value="HORSEPOWER">HORSEPOWER</option>
+                            <option value="KILOWATTS">KILOWATTS</option>
+                            <option value="WATTS">WATTS</option>
+                        </select>
+                        <p id="base-value" aria-placeholder="0">0</p>
+                    </div>
+                    <div class="converted">
+                        <select id="conversion-rate" onchange="updateConversionRate()">
+                            <option value="FPPR">FPPR</option>
+                            <option value="BPM">BPM</option>
+                            <option value="HORSEPOWER">HORSEPOWER</option>
+                            <option value="KILOWATTS">KILOWATTS</option>
+                            <option value="WATTS">WATTS</option>
+                        </select>
+                        <p id="converted-value" aria-placeholder="0">0</p>
+                    </div>
+                </div>
+                <div class="btn">
+                    <input type="button" value='C' onclick="clearOutput()" id="clear">
+                    <input type="button" value='←' onclick="Back()" id="backspace">
+                    <br>
+                    <input type="button" value='7' onclick="appendToOutput('7')">
+                    <input type="button" value='8' onclick="appendToOutput('8')">
+                    <input type="button" value='9' onclick="appendToOutput('9')">
+                    <br>
+                    <input type="button" value='4' onclick="appendToOutput('4')">
+                    <input type="button" value='5' onclick="appendToOutput('5')">
+                    <input type="button" value='6' onclick="appendToOutput('6')">
+                    <br>
+                    <input type="button" value='1' onclick="appendToOutput('1')">
+                    <input type="button" value='2' onclick="appendToOutput('2')">
+                    <input type="button" value='3' onclick="appendToOutput('3')">
+                    <br>
+                    <input type="button" value='0' onclick="appendToOutput('0')">
+                    <input type="button" value='.' onclick="appendToOutput('.')">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src='./power.js'></script>
+</body>
+
+</html>
