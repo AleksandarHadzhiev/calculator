@@ -1,19 +1,24 @@
-import { CurrencyConverter } from './classes/CurrencyConverter.js'
 import { GetCurrentCurrencyRatesFromAPI } from './classes/currencyAPICall.js';
-import { GetCurrentCurrencyRatesFromJSON } from './classes/currenciesJSONfile.js';
+import { RateConverter } from './classes/RateConverter.js';
+import { loadRatesFromFile } from "./classes/RatesFileReader.js";
 let currentOutput = ""
-const currencyConverter = new CurrencyConverter(0, 'EUR-USD')
-const json = new GetCurrentCurrencyRatesFromJSON()
+const rate = LoadConversionRate()
+const lengths = ["USD", "EUR", "BGN", "JPY", "AUD", "CAD", "GBP", "EGP", "CNY", "CHF"];
+const jsonFileName = "./jsonObjects/currencies.json"
+const ratesFromJSONFile = await loadRatesFromFile(lengths, jsonFileName)
+const currencyConverter = new RateConverter(0, rate)
 const getCurrencyRates = new GetCurrentCurrencyRatesFromAPI()
 getCurrencyRates.fetchCurrencyRates()
-json.loadRatesFromFile()
+let rates
 if (getCurrencyRates.getRates() != null) {
-    currencyConverter.conversionRates = getCurrencyRates.getRates()
+    rates = getCurrencyRates.getRates()
 }
 else {
-    currencyConverter.conversionRates = json.getRates()
+    rates = ratesFromJSONFile
 
 }
+
+currencyConverter.setConverionRates(rates)
 
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
@@ -27,11 +32,15 @@ function ToggleSidebar() {
 }
 
 function updateConversionRate() {
-    const baseRate = document.getElementById('base-rate').value;
-    const conversionRate = document.getElementById('conversion-rate').value;
-    const rate = baseRate + "-" + conversionRate
+    const rate = LoadConversionRate()
     currencyConverter.setNewConversionRate(rate)
     convertRates()
+}
+
+function LoadConversionRate() {
+    const baseRate = document.getElementById('base-rate').value;
+    const conversionRate = document.getElementById('conversion-rate').value;
+    return baseRate + "_" + conversionRate
 }
 
 function Back() {
