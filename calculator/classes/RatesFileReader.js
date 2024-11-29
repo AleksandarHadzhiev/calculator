@@ -8,7 +8,7 @@ export async function loadRatesFromFile(lengths, jsonFileName) {
         // Structure the conversion rates with the key format "base-length"
         lengths.forEach(baseLength => {
             lengths.forEach(targetLength => {
-                const key = `${baseLength}-${targetLength}`;
+                const key = `${baseLength}_${targetLength}`;
                 if (rates[key] !== undefined) {
                     conversionRates[key] = rates[key];
                 }

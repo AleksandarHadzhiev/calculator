@@ -27,7 +27,7 @@ function updateConversionRate() {
 function LoadConversionRate() {
     const baseRate = document.getElementById('base-rate').value;
     const conversionRate = document.getElementById('conversion-rate').value;
-    return baseRate + "-" + conversionRate
+    return baseRate + "_" + conversionRate
 }
 
 function Back() {
