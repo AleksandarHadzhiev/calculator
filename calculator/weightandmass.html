@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Angle</h1>
+        <h1>Weight and mass</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -46,17 +46,19 @@
                 <div class="currencies">
                     <div class="base">
                         <select id="base-rate" onchange="updateConversionRate()">
-                            <option value="DEG">Degrees</option>
-                            <option value="RAD">Radians</option>
-                            <option value="GRA">Gradians</option>
+                            <option value="CARATS">Carats</option>
+                            <option value="MILLIGRAMS">Milligrams</option>
+                            <option value="CENTIGRAMS">Centigrams</option>
+                            <option value="DECIGRAMS">Decigrams</option>
                         </select>
                         <p id="base-value" aria-placeholder="0">0</p>
                     </div>
                     <div class="converted">
                         <select id="conversion-rate" onchange="updateConversionRate()">
-                            <option value="GRA">Gradians</option>
-                            <option value="RAD">Radians</option>
-                            <option value="DEG">Degrees</option>
+                            <option value="CARATS">Carats</option>
+                            <option value="MILLIGRAMS">Milligrams</option>
+                            <option value="CENTIGRAMS">Centigrams</option>
+                            <option value="DECIGRAMS">Decigrams</option>
                         </select>
                         <p id="converted-value" aria-placeholder="0">0</p>
                     </div>
@@ -83,7 +85,7 @@
             </form>
         </div>
     </div>
-    <script type="module" src='./angle.js'></script>
+    <script type="module" src='./weight.js'></script>
 </body>
 
 </html>
