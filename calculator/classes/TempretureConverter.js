@@ -1,7 +1,7 @@
 import { GetTempretureRatesFromJSON } from "./tempretureJSONfile.js"
 
 export class TempretureConverter {
-    constructor(baseValue, conversionRate) {
+    constructor(baseValue = 0, conversionRate = "") {
         this.baseValue = baseValue
         this.convertedValue = 0
         this.conversionRate = conversionRate

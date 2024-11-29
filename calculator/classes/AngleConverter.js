@@ -8,6 +8,9 @@ export class AngleConverter {
         this.conversionRates = {}
     }
 
+    setConverionRates(newConversionRates) {
+        this.conversionRates = newConversionRates
+    }
     getConvertedValue() {
         return this.convertedValue
     }
@@ -22,14 +25,8 @@ export class AngleConverter {
         this.convertValue()
     }
 
-    loadRates() {
-        const getTempFromJSON = new GetAngleRatesFromJSON()
-        getTempFromJSON.loadRatesFromFile()
-        this.conversionRates = getTempFromJSON.getRates()
-    }
-
     convertValue() {
-        console.log(this.conversionRate)
+        console.log(this.conversionRates)
         const operation = `${this.baseValue} ${this.conversionRates[this.conversionRate]}`
         console.log(operation)
         this.convertedValue = eval(operation)
