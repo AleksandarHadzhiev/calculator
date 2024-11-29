@@ -24,7 +24,8 @@ export class RateConverter {
     }
 
     convertValue() {
-        const operation = `${this.baseValue} ${this.conversionRates[this.conversionRate]}`
+        const operation = `(${this.baseValue} ${this.conversionRates[this.conversionRate]}`
+        console.log(operation)
         this.convertedValue = eval(operation)
     }
 

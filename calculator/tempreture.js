@@ -1,7 +1,12 @@
-import { TempretureConverter } from "./classes/TempretureConverter.js";
+import { loadRatesFromFile } from "./classes/RatesFileReader.js";
+import { RateConverter } from "./classes/RateConverter.js";
 let currentOutput = ""
-const lengthCoverter = new TempretureConverter(0, 'CEL-FAHR')
-lengthCoverter.loadRates()
+const lengths = ["CEL", "FAHR", "KEV"];
+const jsonFileName = "./jsonObjects/tempreture.json"
+const ratesFromJSONFile = await loadRatesFromFile(lengths, jsonFileName)
+const rate = LoadConversionRate()
+const tempConverter = new RateConverter(0, rate)
+tempConverter.setConverionRates(ratesFromJSONFile)
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
     if (myDiv.classList.contains('invisible')) {
@@ -14,11 +19,15 @@ function ToggleSidebar() {
 }
 
 function updateConversionRate() {
+    const rate = LoadConversionRate()
+    tempConverter.setNewConversionRate(rate)
+    convertRates()
+}
+
+function LoadConversionRate() {
     const baseRate = document.getElementById('base-rate').value;
     const conversionRate = document.getElementById('conversion-rate').value;
-    const rate = baseRate + "-" + conversionRate
-    lengthCoverter.setNewConversionRate(rate)
-    convertRates()
+    return baseRate + "-" + conversionRate
 }
 
 function Back() {
@@ -48,9 +57,9 @@ function convertRates() {
     if (currentOutput === "") {
         currentOutput = "0"
     }
-    lengthCoverter.setNewBaseValue(currentOutput)
+    tempConverter.setNewBaseValue(currentOutput)
     document.getElementById('base-value').innerText = currentOutput;
-    const convertedValue = lengthCoverter.getConvertedValue()
+    const convertedValue = tempConverter.getConvertedValue()
     document.getElementById('converted-value').innerText = convertedValue;
 }
 // Add the functions to the global `window` object
