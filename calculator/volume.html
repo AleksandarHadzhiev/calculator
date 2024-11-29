@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Tempreture</h1>
+        <h1>Volume</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -33,7 +33,7 @@
             <a href="length.html">Length</a>
             <a href="pressure.html">Pressure</a>
             <a href="tempreture.html">Tempreture</a>
-            <a href="time.html">TIme</a>
+            <a href="time.html">Time</a>
             <a href="speed.html">Speed</a>
             <a href="area.html">Area</a>
             <a href="energy.html">Energy</a>
@@ -47,17 +47,19 @@
                 <div class="currencies">
                     <div class="base">
                         <select id="base-rate" onchange="updateConversionRate()">
-                            <option value="CEL">CEL</option>
-                            <option value="FAHR">FAHR</option>
-                            <option value="KEV">KEV</option>
+                            <option value="CARATS">Carats</option>
+                            <option value="MILLIGRAMS">Milligrams</option>
+                            <option value="CENTIGRAMS">Centigrams</option>
+                            <option value="DECIGRAMS">Decigrams</option>
                         </select>
                         <p id="base-value" aria-placeholder="0">0</p>
                     </div>
                     <div class="converted">
                         <select id="conversion-rate" onchange="updateConversionRate()">
-                            <option value="FAHR">FAHR</option>
-                            <option value="CEL">CEL</option>
-                            <option value="KEV">KEV</option>
+                            <option value="CARATS">Carats</option>
+                            <option value="MILLIGRAMS">Milligrams</option>
+                            <option value="CENTIGRAMS">Centigrams</option>
+                            <option value="DECIGRAMS">Decigrams</option>
                         </select>
                         <p id="converted-value" aria-placeholder="0">0</p>
                     </div>
@@ -84,7 +86,7 @@
             </form>
         </div>
     </div>
-    <script type="module" src='./tempreture.js'></script>
+    <script type="module" src='./weight.js'></script>
 </body>
 
 </html>
