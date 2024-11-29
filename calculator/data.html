@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Pressure</h1>
+        <h1>Data</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -29,7 +29,7 @@
             <a href="programming.html">Programming</a>
             <a href="dateTime.html">Date calculation</a>
             <a href="currency.html">Currency</a>
-            <a href="angle.html">Angle</a>
+            <a href="angle.html">angle</a>
             <a href="length.html">Length</a>
             <a href="pressure.html">Pressure</a>
             <a href="tempreture.html">Tempreture</a>
@@ -41,24 +41,23 @@
                 <div class="currencies">
                     <div class="base">
                         <select id="base-rate" onchange="updateConversionRate()">
-                            <!-- ["ATM", "BAR", "KP", "PPSI", "PAS", "MMM"]; -->
-                            <option value="ATM">Atmospheres</option>
-                            <option value="BAR">Bars</option>
-                            <option value="KP">Kilopascals</option>
-                            <option value="PPSI">Pounds per square inch</option>
-                            <option value="PAS">Pascals</option>
-                            <option value="MMM">Milimetres of mercury</option>
+                            <option value="BYTE">Byte</option>
+                            <option value="BIT">Bit</option>
+                            <option value="KILOBYTE">Kilobyte</option>
+                            <option value="MEGABYTE">Megabyte</option>
+                            <option value="GIGABYTE">Gigabyte</option>
+                            <option value="TERABYTE">Terabyte</option>
                         </select>
                         <p id="base-value" aria-placeholder="0">0</p>
                     </div>
                     <div class="converted">
                         <select id="conversion-rate" onchange="updateConversionRate()">
-                            <option value="BAR">Bars</option>
-                            <option value="ATM">Atmospheres</option>
-                            <option value="KP">Kilopascals</option>
-                            <option value="PPSI">Pounds per square inch</option>
-                            <option value="PAS">Pascals</option>
-                            <option value="MMM">Milimetres of mercury</option>
+                            <option value="BIT">Bit</option>
+                            <option value="BYTE">Byte</option>
+                            <option value="KILOBYTE">Kilobyte</option>
+                            <option value="MEGABYTE">Megabyte</option>
+                            <option value="GIGABYTE">Gigabyte</option>
+                            <option value="TERABYTE">Terabyte</option>
                         </select>
                         <p id="converted-value" aria-placeholder="0">0</p>
                     </div>
@@ -85,7 +84,7 @@
             </form>
         </div>
     </div>
-    <script type="module" src='./pressure.js'></script>
+    <script type="module" src='./data.js'></script>
 </body>
 
 </html>

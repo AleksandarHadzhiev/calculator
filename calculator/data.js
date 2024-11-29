@@ -1,8 +1,8 @@
 import { loadRatesFromFile } from "./classes/RatesFileReader.js";
 import { RateConverter } from "./classes/RateConverter.js";
 let currentOutput = ""
-const lengths = ['DEG', 'GRA', 'RAD']
-const jsonFileName = "./jsonObjects/angle.json"
+const lengths = ["BYTE", "BIT", "KILOBYTE", "MEGABYTE", "GIGABYTE", "TERABYTE"]
+const jsonFileName = "./jsonObjects/data.json"
 const ratesFromJSONFile = await loadRatesFromFile(lengths, jsonFileName)
 const rate = LoadConversionRate()
 const angleConverter = new RateConverter(0, rate)
