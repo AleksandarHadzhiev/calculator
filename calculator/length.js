@@ -1,7 +1,12 @@
-import { LengthConverter } from "./classes/LengthConverter.js"
+import { loadRatesFromFile } from "./classes/RatesFileReader.js";
+import { RateConverter } from "./classes/RateConverter.js";
 let currentOutput = ""
-const lengthCoverter = new LengthConverter(0, 'CM-INCH')
-lengthCoverter.loadRates()
+const lengths = ["CM", "INCH", "METER", "FOOT", "YARD", "MILE", "KM"];
+const jsonFileName = "./jsonObjects/lengths.json"
+const ratesFromJSONFile = await loadRatesFromFile(lengths, jsonFileName)
+const rate = LoadConversionRate()
+const lengthCoverter = new RateConverter(0, rate)
+lengthCoverter.setConverionRates(ratesFromJSONFile)
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
     if (myDiv.classList.contains('invisible')) {
@@ -14,11 +19,15 @@ function ToggleSidebar() {
 }
 
 function updateConversionRate() {
-    const baseRate = document.getElementById('base-rate').value;
-    const conversionRate = document.getElementById('conversion-rate').value;
-    const rate = baseRate + "-" + conversionRate
+    const rate = LoadConversionRate()
     lengthCoverter.setNewConversionRate(rate)
     convertRates()
+}
+
+function LoadConversionRate() {
+    const baseRate = document.getElementById('base-rate').value;
+    const conversionRate = document.getElementById('conversion-rate').value;
+    return baseRate + "_" + conversionRate
 }
 
 function Back() {

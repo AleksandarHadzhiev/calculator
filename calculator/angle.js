@@ -1,7 +1,12 @@
-import { AngleConverter } from "./classes/AngleConverter.js";
+import { loadRatesFromFile } from "./classes/RatesFileReader.js";
+import { RateConverter } from "./classes/RateConverter.js";
 let currentOutput = ""
-const angleConverter = new AngleConverter(0, 'DEG-GRA')
-angleConverter.loadRates()
+const lengths = ['DEG', 'GRA', 'RAD']
+const jsonFileName = "./jsonObjects/angle.json"
+const ratesFromJSONFile = await loadRatesFromFile(lengths, jsonFileName)
+const rate = LoadConversionRate()
+const angleConverter = new RateConverter(0, rate)
+angleConverter.setConverionRates(ratesFromJSONFile)
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
     if (myDiv.classList.contains('invisible')) {
@@ -14,11 +19,15 @@ function ToggleSidebar() {
 }
 
 function updateConversionRate() {
-    const baseRate = document.getElementById('base-rate').value;
-    const conversionRate = document.getElementById('conversion-rate').value;
-    const rate = baseRate + "-" + conversionRate
+    const rate = LoadConversionRate()
     angleConverter.setNewConversionRate(rate)
     convertRates()
+}
+
+function LoadConversionRate() {
+    const baseRate = document.getElementById('base-rate').value;
+    const conversionRate = document.getElementById('conversion-rate').value;
+    return baseRate + "_" + conversionRate
 }
 
 function Back() {
