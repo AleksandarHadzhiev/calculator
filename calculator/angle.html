@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Currency</h1>
+        <h1>Angle</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -30,7 +30,7 @@
             <a href="dateTime.html">Date calculation</a>
             <a href="currency.html">Currency</a>
             <a href="angle.html">Angle</a>
-            <a href="length.html">Length</a>
+            <a href="ength.html">Length</a>
             <a href="programming.html">Weight and mass</a>
             <a href="tempreture.html">Tempreture</a>
         </div>
@@ -41,31 +41,17 @@
                 <div class="currencies">
                     <div class="base">
                         <select id="base-rate" onchange="updateConversionRate()">
-                            <option value="EUR">EURO</option>
-                            <option value="USD">USD</option>
-                            <option value="JPY">JYP</option>
-                            <option value="BGN">BGN</option>
-                            <option value="AUD">AUD</option>
-                            <option value="CAD">CAD</option>
-                            <option value="GBP">GBP</option>
-                            <option value="EGP">EGP</option>
-                            <option value="CNY">CNY</option>
-                            <option value="CHF">CHF</option>
+                            <option value="DEG">Degrees</option>
+                            <option value="RAD">Radians</option>
+                            <option value="GRA">Gradians</option>
                         </select>
                         <p id="base-value" aria-placeholder="0">0</p>
                     </div>
                     <div class="converted">
                         <select id="conversion-rate" onchange="updateConversionRate()">
-                            <option value="USD">USD</option>
-                            <option value="EUR">EURO</option>
-                            <option value="JPY">JYP</option>
-                            <option value="BGN">BGN</option>
-                            <option value="AUD">AUD</option>
-                            <option value="CAD">CAD</option>
-                            <option value="GBP">GBP</option>
-                            <option value="EGP">EGP</option>
-                            <option value="CNY">CNY</option>
-                            <option value="CHF">CHF</option>
+                            <option value="GRA">Gradians</option>
+                            <option value="RAD">Radians</option>
+                            <option value="DEG">Degrees</option>
                         </select>
                         <p id="converted-value" aria-placeholder="0">0</p>
                     </div>
@@ -92,7 +78,7 @@
             </form>
         </div>
     </div>
-    <script type="module" src='./currency.js'></script>
+    <script type="module" src='./angle.js'></script>
 </body>
 
 </html>
