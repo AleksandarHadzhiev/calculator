@@ -13,7 +13,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <h1>Data</h1>
+        <h1>Area</h1>
     </div>
     <div class="sidebar invisible" id="myDiv">
         <div class="menu-button" onclick="ToggleSidebar()">
@@ -44,23 +44,19 @@
                 <div class="currencies">
                     <div class="base">
                         <select id="base-rate" onchange="updateConversionRate()">
-                            <option value="BYTE">Byte</option>
-                            <option value="BIT">Bit</option>
-                            <option value="KILOBYTE">Kilobyte</option>
-                            <option value="MEGABYTE">Megabyte</option>
-                            <option value="GIGABYTE">Gigabyte</option>
-                            <option value="TERABYTE">Terabyte</option>
+                            <option value="SQUARE-METERS">SQUARE-METERS</option>
+                            <option value="HECTARES">HECTARES</option>
+                            <option value="SQUARE-CENTIMETERS">SQUARE-CENTIMETERS</option>
+                            <option value="SQUARE-MILLIMETERS">SQUARE-MILLIMETERS</option>
                         </select>
                         <p id="base-value" aria-placeholder="0">0</p>
                     </div>
                     <div class="converted">
                         <select id="conversion-rate" onchange="updateConversionRate()">
-                            <option value="BIT">Bit</option>
-                            <option value="BYTE">Byte</option>
-                            <option value="KILOBYTE">Kilobyte</option>
-                            <option value="MEGABYTE">Megabyte</option>
-                            <option value="GIGABYTE">Gigabyte</option>
-                            <option value="TERABYTE">Terabyte</option>
+                            <option value="HECTARES">HECTARES</option>
+                            <option value="SQUARE-METERS">SQUARE-METERS</option>
+                            <option value="SQUARE-CENTIMETERS">SQUARE-CENTIMETERS</option>
+                            <option value="SQUARE-MILLIMETERS">SQUARE-MILLIMETERS</option>
                         </select>
                         <p id="converted-value" aria-placeholder="0">0</p>
                     </div>
@@ -87,7 +83,7 @@
             </form>
         </div>
     </div>
-    <script type="module" src='./data.js'></script>
+    <script type="module" src='./area.js'></script>
 </body>
 
 </html>
