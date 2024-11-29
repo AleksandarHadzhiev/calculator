@@ -42,6 +42,7 @@ h1 {
 
 /* Sidebar styling */
 .sidebar {
+    overflow-y: auto;
     position: fixed;
     top: 0;
     left: 0;
