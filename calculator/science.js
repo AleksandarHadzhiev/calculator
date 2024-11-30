@@ -1,13 +1,8 @@
-import { StandardCalculator } from "./classes/standardCalculator.js";
+import { ScienceCalculator } from "./classes/ScienceCalculator.js";
+
+const scienceCalculator = new ScienceCalculator(0, 0, '+')
 
 let currentOutput = '0';
-window.ToggleSidebar = ToggleSidebar;
-window.clearOutput = clearOutput;
-window.appendAnOperatorToOutput = appendAnOperatorToOutput;
-window.appendToOutput = appendToOutput;
-window.Result = Result;
-window.Clear = Clear;
-window.Back = Back;
 
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
@@ -20,6 +15,12 @@ function ToggleSidebar() {
     }
 }
 
+function specialOperator(value) {
+    event.preventDefault()
+    scienceCalculator.setOperator(value)
+    currentOutput = scienceCalculator.performSpecialOperators()
+    document.getElementById('output').innerHTML = currentOutput;
+}
 
 function splitAtOperator(input) {
     // Define the operators you want to split by
@@ -70,8 +71,8 @@ function appendAnOperatorToOutput(value) {
 }
 
 function calculateSpecialResult(operator) {
-    let standardCalculator = new StandardCalculator(Number(currentOutput), 0, operator)
-    currentOutput = standardCalculator.performCalculation()
+    let scienceCalculator = new ScienceCalculator(Number(currentOutput), 0, operator)
+    currentOutput = scienceCalculator.performCalculation()
     document.getElementById('output').innerText = currentOutput;
 }
 
@@ -90,8 +91,8 @@ function clearOutput() {
 
 function Result() {
     let inputs = splitAtOperator(currentOutput)
-    let standardCalculator = new StandardCalculator(Number(inputs.beforeOperator), Number(inputs.afterOperator), inputs.operator)
-    currentOutput = standardCalculator.performCalculation()
+    let scienceCalculator = new ScienceCalculator(Number(inputs.beforeOperator), Number(inputs.afterOperator), inputs.operator)
+    currentOutput = scienceCalculator.performCalculation()
     document.getElementById('output').innerText = currentOutput;
 }
 
@@ -116,3 +117,12 @@ document.addEventListener('keydown', function (event) {
         Clear();
     }
 });
+
+window.ToggleSidebar = ToggleSidebar;
+window.clearOutput = clearOutput;
+window.appendAnOperatorToOutput = appendAnOperatorToOutput;
+window.appendToOutput = appendToOutput;
+window.Result = Result;
+window.Clear = Clear;
+window.Back = Back;
+window.specialOperator = specialOperator;

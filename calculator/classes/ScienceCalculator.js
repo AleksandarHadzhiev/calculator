@@ -10,8 +10,10 @@ export class ScienceCalculator extends BaseCalculator {
         this.allowedOperationActions['@'] = this.tenToThePowerOfNumber.bind(this);
         this.allowedOperationActions['log'] = this.logarithmOfNumber.bind(this);
         this.allowedOperationActions['ln'] = this.lnOfNumber.bind(this);
-        this.allowedOperationActions['e'] = this.fetchEFromMath.bind(this);
-        this.allowedOperationActions['p'] = this.fetchPifromMath.bind(this);
+        this.specialOperators = {
+            'e': this.fetchEFromMath.bind(this),
+            'p': this.fetchPifromMath.bind(this)
+        }
     }
 
     divideOneByNumber() {
@@ -60,4 +62,14 @@ export class ScienceCalculator extends BaseCalculator {
         return result.toString()
     }
 
+    performSpecialOperators() {
+        const action = this.specialOperators[this.operator];
+        if (action) {
+            const result = action()
+            return result;
+        }
+        else {
+            throw new Error("Invalid operator");
+        }
+    }
 }
