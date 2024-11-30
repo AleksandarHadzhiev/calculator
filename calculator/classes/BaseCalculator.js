@@ -1,5 +1,8 @@
+import { ActionStorer } from "./ActionStorer.js"
+
 export class BaseCalculator {
     constructor(firstNumber, secondNumber, operator) {
+        this.actionStorer = new ActionStorer("CalculatorStorage")
         this.firstNumber = firstNumber
         this.secondNumber = secondNumber
         this.operator = operator
@@ -41,9 +44,21 @@ export class BaseCalculator {
     }
 
     performCalculation() {
+        const date = new Date()
+        let content = {
+            "firstNumber": this.firstNumber,
+            "secondNumber": this.secondNumber,
+            "operator": this.operator,
+            "expression": `${this.firstNumber} ${this.operator} ${this.secondNumber}`,
+            "date": date.toLocaleString()
+        }
         const action = this.allowedOperationActions[this.operator];
         if (action) {
-            return action();
+            const result = action()
+            content["result"] = result
+            this.actionStorer.setBody(content)
+            this.actionStorer.createJSONFile()
+            return result;
         }
         else {
             throw new Error("Invalid operator");

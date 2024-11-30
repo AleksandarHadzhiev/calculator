@@ -1,4 +1,3 @@
-
 export async function loadRatesFromFile(lengths, jsonFileName) {
     let conversionRates = {}
     try {
@@ -19,5 +18,3 @@ export async function loadRatesFromFile(lengths, jsonFileName) {
         throw new Error("Error loading conversion rates:", error.message);
     }
 }
-
-

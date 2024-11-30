@@ -1,0 +1,18 @@
+[
+  {
+    "firstNumber": 5,
+    "secondNumber": 5,
+    "operator": "+",
+    "expression": "5 + 5",
+    "date": "30/11/2024, 10:30:27",
+    "result": 10
+  },
+  {
+    "firstNumber": 6,
+    "secondNumber": 6,
+    "operator": "+",
+    "expression": "6 + 6",
+    "date": "30/11/2024, 10:30:32",
+    "result": 12
+  }
+]
