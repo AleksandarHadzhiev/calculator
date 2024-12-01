@@ -25,7 +25,7 @@ function specialOperator(value) {
 
 function splitAtOperator(input) {
     // Define the operators you want to split by
-    const operators = ['+', '-', '*', '/', '^', '%', '>>', '<<', '^', '|', '&', '~', '²', '#', '√'];
+    const operators = ['!', 'M', '+', '-', '*', '/', '^', '%', '>>', '<<', '^', '|', '&', '~', '²', '#', '√'];
 
     // Find the first occurrence of any operator
     for (let i = 0; i < input.length; i++) {
