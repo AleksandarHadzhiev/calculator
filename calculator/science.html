@@ -3,6 +3,7 @@
 
 <head>
     <title>Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -46,38 +47,44 @@
             <form>
                 <div class="output" id="output">0</div>
                 <div class="btn">
-                    <input type="button" value='%' onclick="appendAnOperatorToOutput('%')">
+                    <button value='^' onclick="specialOperator('^')">2<span class="sup">nd</span></button>
+                    <button value='p' onclick="specialOperator('p')">π</button>
+                    <button value='e' onclick="specialOperator('e')">e</button>
                     <input type="button" value='C' onclick="clearOutput()" id="clear">
                     <input type="button" value='←' onclick="Back()" id="backspace">
-                    <button value='@' onclick="specialOperator('@')" id="backspace">10<span
-                            class="sup">x</span></button>
                     <br>
-                    <button value='p' onclick="specialOperator('p')" id="clear">π</button>
-                    <button value='e' onclick="specialOperator('e')" id="clear">e</button>
-                    <input type="button" value='log' onclick="appendAnOperatorToOutput('%')">
-                    <input type="button" value='ln' onclick="Clear()" id="clear">
-                    <button value='^' onclick="specialOperator('^')" id="clear">x<span class="sup">y</span></button>
+                    <input type="button" value='x²' onclick="specialOperator('²')">
+                    <input type="button" value='1/x' onclick="specialOperator('#')">
+                    <input type="button" value='|x|' onclick="appendAnOperatorToOutput('#')">
+                    <input type="button" value='exp' onclick="appendAnOperatorToOutput('#')">
+                    <input type="button" value='mod' onclick="appendAnOperatorToOutput('#')">
                     <br>
-                    <input type="button" value='1/x' onclick="appendAnOperatorToOutput('#')">
-                    <input type="button" value='x²' onclick="appendAnOperatorToOutput('²')">
                     <input type="button" value='&radic;x' onclick="appendAnOperatorToOutput('√')">
+                    <input type="button" value='(' onclick="appendAnOperatorToOutput('(')">
+                    <input type="button" value=')' onclick="appendAnOperatorToOutput(')')">
+                    <input type="button" value='n!' onclick="specialOperator('n!')">
                     <input type="button" value='/' onclick="appendAnOperatorToOutput('/')">
-                    <input type="button" value='7' onclick="appendToOutput('7')">
                     <br>
+                    <button value='^' onclick="specialOperator('^')">x<span class="sup">y</span></button>
+                    <input type="button" value='7' onclick="appendToOutput('7')">
                     <input type="button" value='8' onclick="appendToOutput('8')">
                     <input type="button" value='9' onclick="appendToOutput('9')">
                     <input type="button" value='x' onclick="appendAnOperatorToOutput('*')">
+                    <br>
+                    <button value='@' onclick="specialOperator('@')">10<span class="sup">x</span></button>
                     <input type="button" value='4' onclick="appendToOutput('4')">
                     <input type="button" value='5' onclick="appendToOutput('5')">
-                    <br>
                     <input type="button" value='6' onclick="appendToOutput('6')">
                     <input type="button" value='-' onclick="appendAnOperatorToOutput('-')">
+                    <br>
+                    <input type="button" value='log' onclick="specialOperator('log')">
                     <input type="button" value='1' onclick="appendToOutput('1')">
                     <input type="button" value='2' onclick="appendToOutput('2')">
                     <input type="button" value='3' onclick="appendToOutput('3')">
-                    <br>
                     <input type="button" value='+' onclick="appendAnOperatorToOutput('+')">
-                    <input type="button" value='00' onclick="appendToOutput('00')">
+                    <br>
+                    <input type="button" value='ln' onclick="specialOperator('ln')">
+                    <button value='^' onclick="specialOperator('^')"><span class="sup">+</span>/-</button>
                     <input type="button" value='0' onclick="appendToOutput('0')">
                     <input type="button" value='.' onclick="appendAnOperatorToOutput('.')">
                     <input type="button" value='=' onclick="Result()">

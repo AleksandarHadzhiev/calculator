@@ -14,5 +14,61 @@
     "expression": "6 + 6",
     "date": "30/11/2024, 10:30:32",
     "result": 12
+  },
+  {
+    "firstNumber": 92,
+    "secondNumber": 6,
+    "operator": "+",
+    "expression": "92 + 6",
+    "date": "30/11/2024, 12:04:07",
+    "result": 98
+  },
+  {
+    "firstNumber": 92,
+    "secondNumber": 6,
+    "operator": "+",
+    "expression": "92 + 6",
+    "date": "30/11/2024, 12:05:32",
+    "result": 98
+  },
+  {
+    "firstNumber": 9,
+    "secondNumber": 0,
+    "operator": "\u00b2",
+    "expression": "9 \u00b2 0",
+    "date": "30/11/2024, 12:05:43",
+    "result": "81"
+  },
+  {
+    "firstNumber": 12,
+    "secondNumber": 12,
+    "operator": "*",
+    "expression": "12 * 12",
+    "date": "30/11/2024, 12:06:31",
+    "result": 144
+  },
+  {
+    "firstNumber": 0,
+    "secondNumber": 4,
+    "operator": "*",
+    "expression": "0 * 4",
+    "date": "30/11/2024, 12:06:34",
+    "result": 0
+  },
+  {
+    "firstNumber": 25,
+    "secondNumber": 25,
+    "operator": "+",
+    "expression": "25 + 25",
+    "date": "30/11/2024, 12:07:07",
+    "result": 50
+  },
+  {
+    "firstNumber": 7,
+    "secondNumber": 0,
+    "operator": "\u00b2",
+    "expression": "7 \u00b2 0",
+    "date": "01/12/2024, 10:40:11",
+    "result": "49"
   }
 ]

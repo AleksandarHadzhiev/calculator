@@ -12,7 +12,13 @@ export class ScienceCalculator extends BaseCalculator {
         this.allowedOperationActions['ln'] = this.lnOfNumber.bind(this);
         this.specialOperators = {
             'e': this.fetchEFromMath.bind(this),
-            'p': this.fetchPifromMath.bind(this)
+            'p': this.fetchPifromMath.bind(this),
+            'log': this.logarithmOfNumber.bind(this),
+            'ln': this.lnOfNumber.bind(this),
+            '@': this.tenToThePowerOfNumber.bind(this),
+            '^': this.firstToThePowerOfSecond.bind(this),
+            'n!': this.calculateFactorialOfANumber.bind(this)
+
         }
     }
 
@@ -22,6 +28,22 @@ export class ScienceCalculator extends BaseCalculator {
         }
         const result = 1 / Number(this.firstNumber)
         return result.toString()
+    }
+
+    calculateFactorialOfANumber() {
+        let factorial = 1
+        if (this.firstNumber == 0) {
+            return factorial.toString()
+        }
+        else if (this.firstNumber < 0) {
+            return "NaN"
+        }
+
+        for (let index = 2; index <= this.firstNumber; index++) {
+            factorial = factorial * index;
+        }
+
+        return factorial.toString()
     }
 
     squareRoot() {

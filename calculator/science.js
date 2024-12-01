@@ -18,6 +18,7 @@ function ToggleSidebar() {
 function specialOperator(value) {
     event.preventDefault()
     scienceCalculator.setOperator(value)
+    scienceCalculator.setFirstNumber(currentOutput)
     currentOutput = scienceCalculator.performSpecialOperators()
     document.getElementById('output').innerHTML = currentOutput;
 }
@@ -47,6 +48,7 @@ function splitAtOperator(input) {
 }
 
 function appendToOutput(value) {
+    event.preventDefault()
     if (currentOutput == '0') {
         currentOutput = value;
     } else {
@@ -56,6 +58,7 @@ function appendToOutput(value) {
 }
 
 function appendAnOperatorToOutput(value) {
+    event.preventDefault()
     let inputs = splitAtOperator(currentOutput)
     const inSpecialOperators = checkIfInSpecialOperators(value)
     if (inputs !== null && inputs.afterOperator !== '') {
@@ -71,7 +74,7 @@ function appendAnOperatorToOutput(value) {
 }
 
 function calculateSpecialResult(operator) {
-    let scienceCalculator = new ScienceCalculator(Number(currentOutput), 0, operator)
+    scienceCalculator.reset(currentOutput, 0, operator)
     currentOutput = scienceCalculator.performCalculation()
     document.getElementById('output').innerText = currentOutput;
 }
@@ -85,22 +88,29 @@ function checkIfInSpecialOperators(operator) {
 }
 
 function clearOutput() {
+    event.preventDefault()
     currentOutput = '0';
     document.getElementById('output').innerText = currentOutput;
 }
 
 function Result() {
+    event.preventDefault()
     let inputs = splitAtOperator(currentOutput)
-    let scienceCalculator = new ScienceCalculator(Number(inputs.beforeOperator), Number(inputs.afterOperator), inputs.operator)
+    scienceCalculator.setFirstNumber(Number(inputs.beforeOperator))
+    scienceCalculator.setSecondNumber(Number(inputs.afterOperator))
+    scienceCalculator.setOperator(inputs.operator)
     currentOutput = scienceCalculator.performCalculation()
     document.getElementById('output').innerText = currentOutput;
+
 }
 
 function Clear() {
+    event.preventDefault()
     var inp = document.getElementById('output');
     inp.value = '';
 }
 function Back() {
+    event.preventDefault()
     var ev = document.getElementById('output');
     ev.value = ev.value.slice(0, -1);
 }
