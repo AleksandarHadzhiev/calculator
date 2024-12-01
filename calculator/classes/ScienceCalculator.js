@@ -6,12 +6,35 @@ export class ScienceCalculator extends BaseCalculator {
         this.allowedOperationActions['²'] = this.toThePowerOfTwo.bind(this);
         this.allowedOperationActions['√'] = this.squareRoot.bind(this);
         this.allowedOperationActions['#'] = this.divideOneByNumber.bind(this);
-        this.allowedOperationActions['^'] = this.firstToThePowerOfSecond.bind(this);
-        this.allowedOperationActions['@'] = this.tenToThePowerOfNumber.bind(this);
-        this.allowedOperationActions['log'] = this.logarithmOfNumber.bind(this);
-        this.allowedOperationActions['ln'] = this.lnOfNumber.bind(this);
-        this.allowedOperationActions['e'] = this.fetchEFromMath.bind(this);
-        this.allowedOperationActions['p'] = this.fetchPifromMath.bind(this);
+        this.allowedOperationActions['^'] = this.firstToThePowerOfSecond.bind(this)
+        this.allowedOperationActions['!'] = this.calculateExp.bind(this)
+        this.allowedOperationActions['M'] = this.calculateModuleOfTwoNumbers.bind(this)
+        this.specialOperators = {
+            'e': this.fetchEFromMath.bind(this),
+            'p': this.fetchPifromMath.bind(this),
+            'log': this.logarithmOfNumber.bind(this),
+            'ln': this.lnOfNumber.bind(this),
+            '@': this.tenToThePowerOfNumber.bind(this),
+            'n!': this.calculateFactorialOfANumber.bind(this),
+            'abs': this.getTheAbsoluteValueOfANumber.bind(this),
+            '+/-': this.changeNumberToOposite.bind(this),
+
+        }
+    }
+
+    calculateExp() {
+        let expNumber = `${this.firstNumber}`
+        let zeroes = ""
+        for (let index = 0; index < this.secondNumber; index++) {
+            zeroes += "0"
+        }
+        expNumber += zeroes
+        return expNumber
+    }
+
+    calculateModuleOfTwoNumbers() {
+        const module = this.firstNumber % this.secondNumber
+        return module
     }
 
     divideOneByNumber() {
@@ -20,6 +43,33 @@ export class ScienceCalculator extends BaseCalculator {
         }
         const result = 1 / Number(this.firstNumber)
         return result.toString()
+    }
+
+    calculateFactorialOfANumber() {
+        let factorial = 1
+        if (this.firstNumber == 0) {
+            return factorial.toString()
+        }
+        else if (this.firstNumber < 0) {
+            return "NaN"
+        }
+
+        for (let index = 2; index <= this.firstNumber; index++) {
+            factorial = factorial * index;
+        }
+
+        return factorial.toString()
+    }
+
+    getTheAbsoluteValueOfANumber() {
+        return Math.abs(this.firstNumber)
+    }
+
+    changeNumberToOposite() {
+        if (this.firstNumber > 0) {
+            return `-${this.firstNumber}`
+        }
+        return this.getTheAbsoluteValueOfANumber()
     }
 
     squareRoot() {
@@ -60,4 +110,14 @@ export class ScienceCalculator extends BaseCalculator {
         return result.toString()
     }
 
+    performSpecialOperators() {
+        const action = this.specialOperators[this.operator];
+        if (action) {
+            const result = action()
+            return result;
+        }
+        else {
+            throw new Error("Invalid operator");
+        }
+    }
 }

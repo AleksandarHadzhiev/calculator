@@ -1,13 +1,8 @@
-import { StandardCalculator } from "./classes/standardCalculator.js";
+import { ScienceCalculator } from "./classes/ScienceCalculator.js";
+
+const scienceCalculator = new ScienceCalculator(0, 0, '+')
 
 let currentOutput = '0';
-window.ToggleSidebar = ToggleSidebar;
-window.clearOutput = clearOutput;
-window.appendAnOperatorToOutput = appendAnOperatorToOutput;
-window.appendToOutput = appendToOutput;
-window.Result = Result;
-window.Clear = Clear;
-window.Back = Back;
 
 function ToggleSidebar() {
     const myDiv = document.getElementById('myDiv');
@@ -20,10 +15,17 @@ function ToggleSidebar() {
     }
 }
 
+function specialOperator(value) {
+    event.preventDefault()
+    scienceCalculator.setOperator(value)
+    scienceCalculator.setFirstNumber(currentOutput)
+    currentOutput = scienceCalculator.performSpecialOperators()
+    document.getElementById('output').innerHTML = currentOutput;
+}
 
 function splitAtOperator(input) {
     // Define the operators you want to split by
-    const operators = ['+', '-', '*', '/', '^', '%', '>>', '<<', '^', '|', '&', '~', '²', '#', '√'];
+    const operators = ['!', 'M', '+', '-', '*', '/', '^', '%', '>>', '<<', '^', '|', '&', '~', '²', '#', '√'];
 
     // Find the first occurrence of any operator
     for (let i = 0; i < input.length; i++) {
@@ -46,6 +48,7 @@ function splitAtOperator(input) {
 }
 
 function appendToOutput(value) {
+    event.preventDefault()
     if (currentOutput == '0') {
         currentOutput = value;
     } else {
@@ -55,6 +58,7 @@ function appendToOutput(value) {
 }
 
 function appendAnOperatorToOutput(value) {
+    event.preventDefault()
     let inputs = splitAtOperator(currentOutput)
     const inSpecialOperators = checkIfInSpecialOperators(value)
     if (inputs !== null && inputs.afterOperator !== '') {
@@ -70,8 +74,8 @@ function appendAnOperatorToOutput(value) {
 }
 
 function calculateSpecialResult(operator) {
-    let standardCalculator = new StandardCalculator(Number(currentOutput), 0, operator)
-    currentOutput = standardCalculator.performCalculation()
+    scienceCalculator.reset(currentOutput, 0, operator)
+    currentOutput = scienceCalculator.performCalculation()
     document.getElementById('output').innerText = currentOutput;
 }
 
@@ -84,22 +88,29 @@ function checkIfInSpecialOperators(operator) {
 }
 
 function clearOutput() {
+    event.preventDefault()
     currentOutput = '0';
     document.getElementById('output').innerText = currentOutput;
 }
 
 function Result() {
+    event.preventDefault()
     let inputs = splitAtOperator(currentOutput)
-    let standardCalculator = new StandardCalculator(Number(inputs.beforeOperator), Number(inputs.afterOperator), inputs.operator)
-    currentOutput = standardCalculator.performCalculation()
+    scienceCalculator.setFirstNumber(Number(inputs.beforeOperator))
+    scienceCalculator.setSecondNumber(Number(inputs.afterOperator))
+    scienceCalculator.setOperator(inputs.operator)
+    currentOutput = scienceCalculator.performCalculation()
     document.getElementById('output').innerText = currentOutput;
+
 }
 
 function Clear() {
+    event.preventDefault()
     var inp = document.getElementById('output');
     inp.value = '';
 }
 function Back() {
+    event.preventDefault()
     var ev = document.getElementById('output');
     ev.value = ev.value.slice(0, -1);
 }
@@ -116,3 +127,12 @@ document.addEventListener('keydown', function (event) {
         Clear();
     }
 });
+
+window.ToggleSidebar = ToggleSidebar;
+window.clearOutput = clearOutput;
+window.appendAnOperatorToOutput = appendAnOperatorToOutput;
+window.appendToOutput = appendToOutput;
+window.Result = Result;
+window.Clear = Clear;
+window.Back = Back;
+window.specialOperator = specialOperator;

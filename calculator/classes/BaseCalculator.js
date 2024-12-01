@@ -13,14 +13,27 @@ export class BaseCalculator {
             '*': this.multiplyTwoNumbers.bind(this),
         }
     }
+    setOperator(newOperator) {
+        this.operator = newOperator
+    }
+
+    setFirstNumber(newNumber) {
+        this.firstNumber = newNumber
+    }
+
+    setSecondNumber(newNumber) {
+        this.secondNumber = newNumber
+    }
 
     reset(firstNumber, secondNumber, operator) {
-        this.firstNumber = firstNumber
-        this.secondNumber = secondNumber
+        this.firstNumber = Number(firstNumber)
+        this.secondNumber = Number(secondNumber)
         this.operator = operator
     }
 
     addTwoNumbers() {
+        console.log(typeof this.firstNumber)
+        console.log(typeof this.secondNumber)
         const result = this.firstNumber + this.secondNumber
         return result;
     }
